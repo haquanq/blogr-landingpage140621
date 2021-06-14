@@ -1,0 +1,24 @@
+@function color($type, $cor) {
+    @return map-get($type, $cor );
+};
+
+$Primary: (
+    Light_red: #ff525d,//  (CTA text)
+    Very_light_red: hsl(355, 100%, 74%),// (CTA hover background)
+    Very_dark_blue: hsl(208, 49%, 24%),//  (headings)
+);
+
+$Neutral: (
+    White: hsl(0, 0%, 100%), // (text)
+    Grayish_blue: hsl(240, 2%, 79%),// (footer text)
+    Very_dark_grayish_blue: hsl(207, 13%, 34%),// (body copy)
+    Very_dark_black_blue: hsl(240, 10%, 16%),// (footer background)
+);
+
+// // Background gradient - Intro/CTA mobile nav:
+// $Very_light_red: hsl(13, 100%, 72%);
+// $Light_red: hsl(353, 100%, 62%);
+
+// // Background gradient - body:
+// $Very_dark_gray_blue: hsl(237, 17%, 21%);
+// $Very_dark_desaturated_blue: hsl(237, 23%, 32%);

@@ -1,0 +1,407 @@
+header {
+    position: relative;
+    width: 100%; height: 600px;
+    > figure {
+        top: 0; left: 0;
+        overflow: hidden;
+        position: absolute; z-index: -1;
+        background: linear-gradient(90deg,hsl(13, 100%, 72%), hsl(353, 100%, 62%));
+        width: 100%; height: 100%;
+        border-radius: 0 0 0 100px;
+        img {
+            width: 100%; height: 100%;
+            position: absolute;
+            object-fit: cover;
+            top: -40px; left: 500px;
+            transform: scale(2.4);
+            transition: 300ms ease;
+        }
+    }
+}
+
+.head {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__nav {
+        margin-top: 58px;
+        @include Width; height: 49px;
+        display: flex;
+        justify-content: space-between;
+        &__left {
+            display: flex;
+            align-items: center;
+            > img {
+                width: 105px;
+                object-fit: contain;
+            }
+            > div {
+                margin-left: 62px;
+                width: 310px;
+                display: flex;
+                justify-content: space-between;
+                .nav_link {
+                    position: relative;
+                    a {
+                        color: white;
+                        font-weight: 500;
+                        font-family: "Ubuntu", sans-serif;
+                        transition: 150ms ease;
+                        opacity: 0.8;
+                        cursor: pointer;
+                    }
+                    img {
+                        opacity: 0.8;
+                        margin: 0 0 2px 5px;
+                        transition: 300ms ease;
+                        transform: rotate(0);
+                    }
+                    &__dropmenu {
+                        display: none; opacity: 0;
+                        flex-direction: column;
+                        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                        width: 167.5px;
+                        border-radius: 5px;
+                        padding: 25px 24px;
+                        position: absolute;
+                        background: white;
+                        left: -24px; top: 40px;
+                        transition: 200ms ease-in-out;
+                        a {
+                            width: max-content;
+                            color: color($Primary, Very_dark_blue);
+                            line-height: 2.3;
+                            font-weight: 300;
+                        }
+                    }
+                }
+
+            }
+        }
+        &__right {
+            display: flex;
+            align-items: center;
+            a {
+                color: white;
+                opacity: 0.8;
+                font-family: "Ubuntu", sans-serif;
+                font-weight: 500;
+                margin-right: 30px;
+            }
+            button {
+                font-family: "Ubuntu", sans-serif;
+                font-weight: 500;
+                font-size: 1.125em;
+                color: color($Primary, Light_red);
+                background: white;
+                width: 138px; height: 49px;
+                border-radius: 40px;
+                border: none;
+                cursor: pointer;
+                transition: 150ms ease;
+            }
+        }
+    }
+
+    &__intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 130px;
+        > h1 {
+            color: white;
+            font-family: "overpass", sans-serif;
+            font-weight: 700;
+            font-size: 3.75em;
+            text-align: center;
+        }
+        > p {
+            margin-top: 10px;
+            font-family: "overpass", sans-serif;
+            font-size: 1.25em;
+            font-weight: 300;
+            color: white;
+            text-align: center;
+            opacity: 0.8;
+        }
+        > div {
+            margin-top: 45px;
+            > button {
+                font-family: "ubuntu", sans-serif;
+                font-weight: 600;
+                border: none;
+                border-radius: 40px;
+                width: 138px; height: 49px;
+                cursor: pointer;
+                transition: 150ms ease;
+            }
+            > button:first-child {
+                background: white;
+                color: color($Primary, Light_red);
+                margin-right: 11px;
+            }
+            > button:last-child {
+                background: transparent;
+                color: white;
+                border: 2px solid white;
+            }
+        }
+    }
+}
+
+#ham_button {
+    position: relative; z-index: 10;
+    display: none;
+    cursor: pointer;
+    transition: 250ms ease-in-out;
+    > span {
+        display: block;
+        width: 32.5px; height: 2px;
+        background: white;
+        margin: 6px 0;
+        transition: 250ms ease-in-out;
+    }
+}
+
+#ham_button.open {
+    transform: translateX(8px);
+    > span:nth-child(1) {
+        transform: rotate(45deg) translateY(11px);
+    }
+    > span:nth-child(2) {
+        opacity: 0;
+    }
+    > span:nth-child(3) {
+        transform: rotate(-45deg) translateY(-11px);
+    }
+}
+
+.navmenu_container {
+    font-weight: 500;
+    font-family: "Ubuntu", sans-serif;
+    display: none; opacity: 0;
+    justify-content: center;
+    width: 100%;
+    position: absolute; z-index: 6;
+    top: 0;
+    transition: 300ms ease;
+}
+
+.navmenu {
+    padding: 40px 25px 30px 25px;
+    background: white;
+    border-radius: 5px;
+    margin-top: 125px;
+    @include Width;
+    box-shadow: 
+        rgba(0, 0, 0, 0.07) 0px 1px 2px, 
+        rgba(0, 0, 0, 0.07) 0px 2px 4px, 
+        rgba(0, 0, 0, 0.1) 0px 4px 8px, 
+        rgba(0, 0, 0, 0.07) 0px 8px 16px, 
+        rgba(0, 0, 0, 0.07) 0px 16px 32px, 
+        rgba(0, 0, 0, 0.08) 0px 32px 64px;
+    &__top {
+        // padding: 0 0 20px 0;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+        > div {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            > div:first-child {
+                img {
+                    margin-left: 5px;
+                    width: 12px;
+                    transition: 300ms ease-in-out;
+                }
+                a {
+                    color: color($Primary, Very_dark_blue);
+                    font-size: 1em;
+                    font-weight: 300;
+                    cursor: pointer;
+                }    
+            }
+            > div:last-child {
+                max-height: 0;
+                margin: 20px;
+                width: 100%;
+                border-radius: 5px;
+                background: rgba(black, 0.05);
+                transition: 500ms ease-in-out;
+                div {
+                    opacity: 0;
+                    display: none;
+                    flex-direction: column;
+                    align-items: center;
+                    transition: 150ms ease;
+                    > a:first-child {
+                        margin-top: 20px;
+                    }
+                    > a:last-child {
+                        margin-bottom: 20px;
+                    }
+                    a {
+                        font-size: 0.9375em;
+                        font-weight: 300;
+                        margin: 10px 0;
+                        color: rgba(color($Primary, Very_dark_blue), 0.8);
+                    }
+                }
+
+            }
+        }
+    }
+    &__bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 25px 0 0 0;
+        width: 100%;
+        border-top: 2px solid rgba(black, 0.05);
+        a {
+            font-size: 1em;
+            margin-right: 30px;
+            color: color($Primary, Very_dark_blue);
+        }
+        button {
+            width: 137px; height: 49px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: white;
+            background: linear-gradient(90deg,hsl(13, 100%, 72%), hsl(353, 100%, 62%));
+        }
+    }
+}
+
+
+@media (hover:hover) {
+    .head__nav__left {
+        .nav_link__dropmenu {
+            a:hover {
+                font-weight: 600;
+                opacity: 1;
+            }
+        }
+        .nav_link {
+            > a:hover {
+                opacity: 1;
+            }
+            > a:hover ~ img {
+                opacity: 1;
+            }
+        }
+    }
+    .head__nav__right {
+        button:hover {
+            background: color($Primary, Very_light_red);
+            color: white;
+        }
+        a:hover {
+            opacity: 1;
+        }
+    }
+    .head__intro {
+        > div {
+            > button:first-child:hover {
+                background: color($Primary, Very_light_red);
+                color: white;
+            }
+            > button:last-child:hover {
+                background: white;
+                color: color($Primary, Light_red);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 950px) {
+    header {
+        > figure {
+            img {
+                top: 20px; left: 300px;
+                transform: scale(2.4);
+            }
+        }
+    }
+    .head__intro {
+        margin-top: 100px;
+        h1 {
+            font-size: 3.25em;
+            width: 14ch;
+        }
+    }
+}
+
+@media screen and (max-width: 840px) {
+    header {
+        > figure {
+            img {
+                top: 50px; left: 150px;
+                transform: scale(2.4);
+            }
+        }
+    }
+    #ham_button {
+        display: initial;
+    }
+    .head__nav__left {
+        > div {
+            width: auto;
+        }
+        .nav_link {
+            display: none;
+        }
+    }
+    .head__nav__right {
+        > div:first-child {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 580px) {
+    header {
+        > figure {
+            img {
+                top: 120px; left: 170px;
+                transform: scale(2.5);
+            }
+        }
+    }
+    .head__intro {
+        margin-top: 100px;
+        h1 {
+            font-size: 2.75em;
+            width: 14ch;
+        }
+        p {
+            width: 25ch;
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .navmenu {
+        &__bottom {
+            flex-direction: column;
+            a {
+                margin: 0 0 25px 0;
+            }
+        }
+    }
+    .head__intro {
+        margin-top: 100px;
+        h1 {
+            font-size: 2.25em;
+            width: 14ch;
+        }
+        > p {
+            width: 25ch;
+        }
+    }
+}
+
